@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { stats } from "@/data/portfolio";
 import { useCountUp } from "@/hooks/useCountUp";
-import profileImg from "@/assets/profile.jpg";
+import profileImg from "@/assets/profile1.jpg";
 
 const coreStack = [
   "Python",

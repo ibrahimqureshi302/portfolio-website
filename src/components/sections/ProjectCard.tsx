@@ -61,7 +61,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             >
               <GithubIcon size={13} /> Code
             </a>
-            <a
+            {/* <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -69,7 +69,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               style={{ backgroundImage: "linear-gradient(100deg, var(--color-blue) 0%, var(--color-violet) 100%)" }}
             >
               <ExternalLink size={13} /> Live Demo
-            </a>
+            </a> */}
             <button
               onClick={() => setOpen(true)}
               className="ml-auto text-xs font-mono text-muted hover:text-ink transition-colors"
@@ -128,7 +128,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           >
             <GithubIcon size={14} /> View Code
           </a>
-          <a
+          {/* <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -136,7 +136,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             style={{ backgroundImage: "linear-gradient(100deg, var(--color-blue) 0%, var(--color-violet) 100%)" }}
           >
             <ExternalLink size={14} /> Live Demo
-          </a>
+          </a> */}
         </div>
       </Modal>
     </>

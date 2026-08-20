@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS
+   Palette
+   - void      #0A0B0F  primary background (near-black, cool undertone)
+   - surface   #121319  card / panel base
+   - elevated  #191B22  raised surfaces (nav on scroll, modals)
+   - ink       #EDEFF4  primary text (soft off-white)
+   - muted     #8B92A6  secondary text
+   - faint     #565D70  tertiary / disabled text
+   - blue      #2E6BFF  primary accent — actions, links, GET
+   - cyan      #22D3EE  secondary accent — highlights, status
+   - violet    #8B5CF6  tertiary accent — gradients only
+   - mint      #34D399  "200 OK" status accent
+   ============================================================ */
+
+@theme {
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+
+  --color-void: #0a0b0f;
+  --color-void-soft: #0d0e13;
+  --color-surface: #121319;
+  --color-surface-2: #171922;
+  --color-elevated: #191b22;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-soft: rgba(255, 255, 255, 0.05);
+
+  --color-ink: #edeff4;
+  --color-muted: #8b92a6;
+  --color-faint: #565d70;
+
+  --color-blue: #2e6bff;
+  --color-blue-soft: #5b86ff;
+  --color-cyan: #22d3ee;
+  --color-violet: #8b5cf6;
+  --color-mint: #34d399;
+
+  --shadow-glow-blue: 0 0 60px -12px rgba(46, 107, 255, 0.35);
+  --shadow-glow-cyan: 0 0 60px -12px rgba(34, 211, 238, 0.3);
+
+  --breakpoint-xs: 420px;
+}
+
+/* ---- Light theme ----
+   Redefines the SAME semantic variable names used above, so every utility
+   class built from them (bg-void, text-ink, border-line, .glass, etc.)
+   adapts automatically — no separate "paper" class names needed. Brand
+   accents (blue/cyan/violet/mint) stay constant across both themes. */
+html.light {
+  --color-void: #f5f6fa;
+  --color-void-soft: #eef0f5;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef0f5;
+  --color-elevated: #ffffff;
+  --color-line: rgba(15, 17, 26, 0.1);
+  --color-line-soft: rgba(15, 17, 26, 0.06);
+
+  --color-ink: #14161f;
+  --color-muted: #565b6e;
+  --color-faint: #8b90a0;
+}
+
+/* ---- Base ---- */
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 8px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue);
+}
+
+/* Focus visibility — accessible keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Reusable primitives ---- */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.glass {
+  background: color-mix(in srgb, var(--color-surface) 60%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-line);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-blue-soft) 10%, var(--color-cyan) 55%, var(--color-violet) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-fade {
+  background-image: linear-gradient(to right, var(--color-line-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, black 40%, transparent 100%);
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html.light body {
+  color-scheme: light;
+}

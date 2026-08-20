@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Maximize2, Check } from "lucide-react";
+import { Maximize2, Check } from "lucide-react";
 import type { Project } from "@/types";
 import { ProjectThumbnail } from "@/components/ui/ProjectThumbnail";
 import { Modal } from "@/components/ui/Modal";
